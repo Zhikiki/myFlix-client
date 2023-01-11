@@ -143,8 +143,8 @@
     }
   }
 })({"1xC6H":[function(require,module,exports) {
-var Refresh = require("2356c146d302dc7b");
-var ErrorOverlay = require("3c675090817f285a");
+var Refresh = require("6d04dedd189e5f2c");
+var ErrorOverlay = require("bbe592f77970606b");
 Refresh.injectIntoGlobalHook(window);
 window.$RefreshReg$ = function() {};
 window.$RefreshSig$ = function() {
@@ -163,11 +163,11 @@ window.addEventListener("parcelhmraccept", ()=>{
     ErrorOverlay.dismissRuntimeErrors();
 });
 
-},{"2356c146d302dc7b":"786KC","3c675090817f285a":"1dldy"}],"786KC":[function(require,module,exports) {
+},{"6d04dedd189e5f2c":"786KC","bbe592f77970606b":"1dldy"}],"786KC":[function(require,module,exports) {
 "use strict";
-module.exports = require("b43c1a8282673648");
+module.exports = require("856c402b4c9a9473");
 
-},{"b43c1a8282673648":"hdge7"}],"hdge7":[function(require,module,exports) {
+},{"856c402b4c9a9473":"hdge7"}],"hdge7":[function(require,module,exports) {
 /** @license React v0.9.0
  * react-refresh-runtime.development.js
  *
@@ -628,7 +628,7 @@ module.exports = require("b43c1a8282673648");
 })();
 
 },{}],"1dldy":[function(require,module,exports) {
-var process = require("51bcd5d1362fb9a3");
+var process = require("c4fad916e29b0d5d");
 !function(e, t) {
     module.exports = t();
 }(window, function() {
@@ -2358,7 +2358,7 @@ var process = require("51bcd5d1362fb9a3");
     ]);
 });
 
-},{"51bcd5d1362fb9a3":"d5jf4"}],"d5jf4":[function(require,module,exports) {
+},{"c4fad916e29b0d5d":"d5jf4"}],"d5jf4":[function(require,module,exports) {
 // shim for using process in browser
 var process = module.exports = {};
 // cached from whatever global is present so that test runners that stub it
@@ -2901,6 +2901,8 @@ $parcel$ReactRefreshHelpers$98a3.prelude(module);
 try {
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _client = require("react-dom/client");
+// Importing MainView
+var _mainView = require("./components/main-view/main-view");
 // Import statement to indicate that you need to bundle `./index.scss`
 var _indexScss = require("./index.scss");
 // Main component (will eventually use all the others)
@@ -2911,12 +2913,12 @@ const MyFlixApplication = ()=>{
             children: "Good morning"
         }, void 0, false, {
             fileName: "src/index.jsx",
-            lineNumber: 10,
+            lineNumber: 13,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/index.jsx",
-        lineNumber: 9,
+        lineNumber: 12,
         columnNumber: 5
     }, undefined);
 };
@@ -2927,7 +2929,7 @@ const root = (0, _client.createRoot)(container);
 // Tells React to render your app in the root DOM element
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(MyFlixApplication, {}, void 0, false, {
     fileName: "src/index.jsx",
-    lineNumber: 20,
+    lineNumber: 23,
     columnNumber: 13
 }, undefined));
 var _c;
@@ -2938,11 +2940,11 @@ $RefreshReg$(_c, "MyFlixApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./components/main-view/main-view":"4gflv"}],"iTorj":[function(require,module,exports) {
 "use strict";
-module.exports = require("7adfee2ce12c015d");
+module.exports = require("e492af6231de9f05");
 
-},{"7adfee2ce12c015d":"48uCM"}],"48uCM":[function(require,module,exports) {
+},{"e492af6231de9f05":"48uCM"}],"48uCM":[function(require,module,exports) {
 /**
  * @license React
  * react-jsx-dev-runtime.development.js
@@ -2954,7 +2956,7 @@ module.exports = require("7adfee2ce12c015d");
  */ "use strict";
 (function() {
     "use strict";
-    var React = require("92e11bb983346779");
+    var React = require("f3f1542182bda62c");
     // ATTENTION
     // When adding new symbols to this file,
     // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
@@ -3773,11 +3775,11 @@ module.exports = require("7adfee2ce12c015d");
     exports.jsxDEV = jsxDEV$1;
 })();
 
-},{"92e11bb983346779":"21dqq"}],"21dqq":[function(require,module,exports) {
+},{"f3f1542182bda62c":"21dqq"}],"21dqq":[function(require,module,exports) {
 "use strict";
-module.exports = require("ea7b049e0f94df91");
+module.exports = require("e047fbfc1beaf447");
 
-},{"ea7b049e0f94df91":"6YvXz"}],"6YvXz":[function(require,module,exports) {
+},{"e047fbfc1beaf447":"6YvXz"}],"6YvXz":[function(require,module,exports) {
 /**
  * @license React
  * react.development.js
@@ -5645,7 +5647,7 @@ module.exports = require("ea7b049e0f94df91");
 
 },{}],"lOjBx":[function(require,module,exports) {
 "use strict";
-var m = require("30b4c0502e052e62");
+var m = require("7fdb134c2466ce9b");
 var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 exports.createRoot = function(c, o) {
     i.usingClientEntryPoint = true;
@@ -5664,7 +5666,7 @@ exports.hydrateRoot = function(c, h, o) {
     }
 };
 
-},{"30b4c0502e052e62":"j6uA9"}],"j6uA9":[function(require,module,exports) {
+},{"7fdb134c2466ce9b":"j6uA9"}],"j6uA9":[function(require,module,exports) {
 "use strict";
 function checkDCE() {
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined" || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== "function") return;
@@ -5678,9 +5680,9 @@ function checkDCE() {
     // a false positive.
     throw new Error("^_^");
 }
-module.exports = require("6fd2d4eac3a3ed24");
+module.exports = require("44a3e225964d68e9");
 
-},{"6fd2d4eac3a3ed24":"3iA9v"}],"3iA9v":[function(require,module,exports) {
+},{"44a3e225964d68e9":"3iA9v"}],"3iA9v":[function(require,module,exports) {
 /**
  * @license React
  * react-dom.development.js
@@ -5693,8 +5695,8 @@ module.exports = require("6fd2d4eac3a3ed24");
 (function() {
     "use strict";
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var React = require("a27d438b85eb5e83");
-    var Scheduler = require("7482ccb3948d9277");
+    var React = require("99f819ff8f27c66b");
+    var Scheduler = require("1b91ac342ad7685c");
     var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
     var suppressWarning = false;
     function setSuppressWarning(newSuppressWarning) {
@@ -26665,11 +26667,11 @@ module.exports = require("6fd2d4eac3a3ed24");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{"a27d438b85eb5e83":"21dqq","7482ccb3948d9277":"juvHo"}],"juvHo":[function(require,module,exports) {
+},{"99f819ff8f27c66b":"21dqq","1b91ac342ad7685c":"juvHo"}],"juvHo":[function(require,module,exports) {
 "use strict";
-module.exports = require("f6f46d3714f4d556");
+module.exports = require("2df1259051c470be");
 
-},{"f6f46d3714f4d556":"RqdIf"}],"RqdIf":[function(require,module,exports) {
+},{"2df1259051c470be":"RqdIf"}],"RqdIf":[function(require,module,exports) {
 /**
  * @license React
  * scheduler.development.js
@@ -27125,7 +27127,7 @@ module.exports = require("f6f46d3714f4d556");
 
 },{}],"lJZlQ":[function() {},{}],"km3Ru":[function(require,module,exports) {
 "use strict";
-var Refresh = require("2976190d1b9fee32");
+var Refresh = require("4acfef80b864f01b");
 function debounce(func, delay) {
     var args;
     {
@@ -27257,6 +27259,108 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"2976190d1b9fee32":"786KC"}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"4acfef80b864f01b":"786KC"}],"4gflv":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$f7a6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$f7a6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MainView", ()=>MainView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+const MainView = ()=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: "Silence of the Lambs"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 4,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: "Stuart Little"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 5,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: "The Lord of the Rings: The Return of the King"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 6,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: "The Lion King"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 7,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: "The Godfather"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 8,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: "Inception"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 9,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 3,
+        columnNumber: 5
+    }, undefined);
+};
+_c = MainView;
+var _c;
+$RefreshReg$(_c, "MainView");
+
+  $parcel$ReactRefreshHelpers$f7a6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

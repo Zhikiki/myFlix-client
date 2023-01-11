@@ -1,12 +1,25 @@
+// Importing useState for creation and initialization of state
+import { useState } from 'react';
+
 export const MainView = () => {
+  const [movies, setMovies] = useState([
+    { id: 1, title: 'Silence of the Lambs' },
+    { id: 2, title: 'Stuart Little' },
+    { id: 3, title: 'The Lord of the Rings: The Return of the King' },
+    { id: 4, title: 'The Lion King' },
+    { id: 5, title: 'The Godfather' },
+    { id: 6, title: 'Inception' },
+  ]);
+
+  if (movies.length === 0) {
+    return <div>The list of movies is empty</div>
+  }
+
   return (
     <div>
-      <div>Silence of the Lambs</div>
-      <div>Stuart Little</div>
-      <div>The Lord of the Rings: The Return of the King</div>
-      <div>The Lion King</div>
-      <div>The Godfather</div>
-      <div>Inception</div>
+      {movies.map((movie) => {
+        return <div>{movie.title}</div>
+      })}
     </div>
   );
 };

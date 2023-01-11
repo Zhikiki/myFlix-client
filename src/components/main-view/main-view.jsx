@@ -1,6 +1,9 @@
 // Importing useState for creation and initialization of state
 import { useState } from 'react';
 
+// Importing MovieCard component, so it can be used here
+import { MovieCard } from '../movie-card/movie-card';
+
 export const MainView = () => {
   const [movies, setMovies] = useState([
     { id: 1, title: 'Silence of the Lambs' },
@@ -12,14 +15,14 @@ export const MainView = () => {
   ]);
 
   if (movies.length === 0) {
-    return <div>The list of movies is empty</div>
+    return <div>The list of movies is empty</div>;
   }
 
   return (
     <div>
-      {movies.map((movie) => {
-        return <div>{movie.title}</div>
-      })}
+      {movies.map((movie) => (
+        <MovieCard key={movie.id} movieData={movie}/>
+      ))}
     </div>
   );
 };

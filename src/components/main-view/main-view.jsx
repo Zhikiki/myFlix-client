@@ -14,8 +14,7 @@ export const MainView = () => {
       title: 'Silence of the Lambs',
       description:
         'A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.',
-      image:
-        'https://play-lh.googleusercontent.com/8Zyaxu-u4c_mfuC37GPGRUqiuTDLDjthcXY3NU6THy_nOvzG82zIBX9QkVe44UPNvcU=w240-h480-rw',
+      image: 'https://assets.nflxext.com/us/boxshots/hd1080/14546747.jpg',
       director: 'Jonathan Demme',
       genre: 'Thriller',
     },
@@ -43,7 +42,7 @@ export const MainView = () => {
       title: 'The Lion King',
       description:
         'This Disney animated feature follows the adventures of the young lion Simba.',
-      image: 'https://m.media-amazon.com/images/I/71zzK7+mLUL.jpg',
+      image: 'https://cdn.kinocheck.com/images/w288/4vrprrb9e2.webp',
       director: 'Rob Minkoff',
       genre: 'Animated',
     },
@@ -68,6 +67,12 @@ export const MainView = () => {
     },
   ]);
 
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  if (selectedMovie) {
+    return <MovieView movieData={selectedMovie} onBackClick={() => setSelectedMovie(null)} />;
+  }
+
   if (movies.length === 0) {
     return <div>The list of movies is empty</div>;
   }
@@ -75,7 +80,13 @@ export const MainView = () => {
   return (
     <div>
       {movies.map((movie) => (
-        <MovieCard key={movie.id} movieData={movie} />
+        <MovieCard
+          key={movie.id}
+          movieData={movie}
+          onMovieClick={(newSelectedBook) => {
+            setSelectedMovie(newSelectedBook);
+          }}
+        />
       ))}
     </div>
   );

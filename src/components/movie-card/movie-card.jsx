@@ -1,12 +1,18 @@
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 
 // Movie card receivs property from the MainView
 // Property = result of function movies.map = movie
 // each movie contains id and title
 export const MovieCard = ({ movieData, onMovieClick }) => {
-  return <div onClick={() => {
-    onMovieClick(movieData)
-  }}>{movieData.title}</div>;
+  return (
+    <div
+      onClick={() => {
+        onMovieClick(movieData);
+      }}
+    >
+      {movieData.title}
+    </div>
+  );
 };
 
 // Here is where we define all the props constraints for the BookCard
@@ -24,6 +30,7 @@ MovieCard.propTypes = {
       name: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
     }).isRequired,
+    image: PropTypes.string.isRequired,
   }).isRequired,
   onMovieClick: PropTypes.func.isRequired,
 };

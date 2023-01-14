@@ -55,17 +55,16 @@ export const MainView = () => {
         />
         <hr />
         <h2>Similar movies</h2>
-        
-          {similarMovies.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              movieData={movie}
-              onMovieClick={(newSelectedBook) => {
-                setSelectedMovie(newSelectedBook);
-              }}
-            />
-          ))}
 
+        {similarMovies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            movieData={movie}
+            onMovieClick={(newSelectedBook) => {
+              setSelectedMovie(newSelectedBook);
+            }}
+          />
+        ))}
       </>
     );
   }

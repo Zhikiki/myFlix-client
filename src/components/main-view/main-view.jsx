@@ -19,12 +19,20 @@ export const MainView = () => {
             id: doc._id,
             title: doc.Title,
             description: doc.Description,
-            genre: doc.Genre.Name,
-            director: doc.Director.Name,
+            genre: {
+              name: doc.Genre.Name,
+              description: doc.Genre.Description,
+            },
+            director: {
+              name: doc.Director.Name,
+              bio: doc.Director.Bio,
+              birth: doc.Director.Birth,
+              death: doc.Director.Death,
+            },
             image: doc.ImagePath,
           };
         });
-        setMovies(moviesFromApi)
+        setMovies(moviesFromApi);
         console.log('movies from api:', data);
       });
   }, []);

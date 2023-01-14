@@ -2,10 +2,9 @@
 // Property = result of function user click and giving value to selectedMovie variable
 // selectedMovie contains all info for MovieView component UI
 export const MovieView = ({ movieData, onBackClick }) => {
-    let altDiscription = `Poster for ${movieData.title}`
   return (
     <div>
-      <img src={movieData.image} width='250' alt={altDiscription} />
+      <img src={movieData.image} width='250' alt={`Poster for ${movieData.title}`} />
       <div>
         <span>Title: </span>
         <span>{movieData.title}</span>

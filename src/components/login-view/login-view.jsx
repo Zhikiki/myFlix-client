@@ -35,6 +35,10 @@ export const LoginView = ({ onLoggedIn }) => {
           type='text'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength='3'
+          pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
+          title="Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&"
         />
       </label>
       <label>
@@ -43,6 +47,9 @@ export const LoginView = ({ onLoggedIn }) => {
           type='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
+          pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
+          title="Password may only contain letters, numbers and special characters: .,'-!?%&"
         />
       </label>
       <button type='submit'>Submit</button>

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -36,10 +38,10 @@ export const LoginView = ({ onLoggedIn }) => {
       });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId='formUsername'>
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           type='text'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -48,10 +50,10 @@ export const LoginView = ({ onLoggedIn }) => {
           pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
           title="Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&"
         />
-      </label>
-      <label>
-        Password:
-        <input
+      </Form.Group>
+      <Form.Group controlId='formPassword'>
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -59,8 +61,10 @@ export const LoginView = ({ onLoggedIn }) => {
           pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
           title="Password may only contain letters, numbers and special characters: .,'-!?%&"
         />
-      </label>
-      <button type='submit'>Submit</button>
-    </form>
+      </Form.Group>
+      <Button variant='primary' type='submit'>
+        Submit
+      </Button>
+    </Form>
   );
 };

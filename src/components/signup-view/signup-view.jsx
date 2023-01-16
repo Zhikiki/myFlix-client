@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
@@ -31,12 +33,12 @@ export const SignupView = () => {
       }
     });
   };
-  
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId='forUsername'>
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           type='text'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -44,37 +46,45 @@ export const SignupView = () => {
           minLength='3'
           pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
           title="Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&"
+          placeholder='Enter your name'
         />
-      </label>
-      <label>
-        Password:
-        <input
+        <Form.Text className='text-muted'>
+          We'll never share your email with anyone else.
+        </Form.Text>
+      </Form.Group>
+      <Form.Group controlId='forPassword'>
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
           pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
           title="Password may only contain letters, numbers and special characters: .,'-!?%&"
+          placeholder='Create a password'
         />
-      </label>
-      <label>
-        Email:
-        <input
+      </Form.Group>
+      <Form.Group controlId='forEmail'>
+        <Form.Label>Email:</Form.Label>
+        <Form.Control
           type='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          placeholder='Enter email'
         />
-      </label>
-      <label>
-        Birthday:
-        <input
+      </Form.Group>
+      <Form.Group controlId='forBirthday'>
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control
           type='date'
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
         />
-      </label>
-      <button type='submit'>Submit</button>
-    </form>
+      </Form.Group>
+      <Button variant='primary' type='submit'>
+        Submit
+      </Button>
+    </Form>
   );
 };

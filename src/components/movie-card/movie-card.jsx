@@ -1,17 +1,41 @@
 import PropTypes from 'prop-types';
 
+// Importing bootstrap components
+import { Button, Card } from 'react-bootstrap';
+
 // Movie card receivs property from the MainView
 // Property = result of function movies.map = movie
 // each movie contains id and title
 export const MovieCard = ({ movieData, onMovieClick }) => {
   return (
-    <div
+    <Card
+      style={{ width: '18rem' }}
       onClick={() => {
         onMovieClick(movieData);
       }}
     >
-      {movieData.title}
-    </div>
+      <Card.Img variant='top' src={movieData.image} />
+      <Card.Body>
+        <Card.Title>{movieData.title}</Card.Title>
+        <Card.Text>{movieData.description}</Card.Text>
+        <Button
+          // onClick={() => {
+          //   onMovieClick(movieData);
+          // }}
+          variant='secondary'
+          size='sm'
+        >
+          Details
+        </Button>
+      </Card.Body>
+    </Card>
+    // <div
+    //   onClick={() => {
+    //     onMovieClick(movieData);
+    //   }}
+    // >
+    //   {movieData.title}
+    // </div>
   );
 };
 

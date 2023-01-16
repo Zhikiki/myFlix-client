@@ -27472,9 +27472,6 @@ const MovieCard = ({ movieData , onMovieClick  })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        // onClick={() => {
-                        //   onMovieClick(movieData);
-                        // }}
                         variant: "secondary",
                         size: "sm",
                         children: "Details"

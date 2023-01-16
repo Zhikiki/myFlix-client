@@ -19,9 +19,6 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
         <Card.Title>{movieData.title}</Card.Title>
         <Card.Text>{movieData.description}</Card.Text>
         <Button
-          // onClick={() => {
-          //   onMovieClick(movieData);
-          // }}
           variant='secondary'
           size='sm'
         >
@@ -29,13 +26,6 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
         </Button>
       </Card.Body>
     </Card>
-    // <div
-    //   onClick={() => {
-    //     onMovieClick(movieData);
-    //   }}
-    // >
-    //   {movieData.title}
-    // </div>
   );
 };
 

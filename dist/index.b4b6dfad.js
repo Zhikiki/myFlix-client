@@ -27284,6 +27284,8 @@ var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 var _loginView = require("../login-view/login-view");
 var _signupView = require("../signup-view/signup-view");
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -27326,27 +27328,76 @@ const MainView = ()=>{
     }, [
         token
     ]);
-    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
-                onLoggedIn: (user, token)=>{
-                    setUser(user);
-                    setToken(token);
-                }
-            }, void 0, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 60,
-                columnNumber: 9
-            }, undefined),
-            "or",
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 67,
-                columnNumber: 9
-            }, undefined)
-        ]
-    }, void 0, true);
-    if (selectedMovie) {
+    // if (!user) {
+    //   return (
+    //     <>
+    //       <LoginView
+    //         onLoggedIn={(user, token) => {
+    //           setUser(user);
+    //           setToken(token);
+    //         }}
+    //       />
+    //       or
+    //       <SignupView />
+    //     </>
+    //   );
+    // }
+    // if (selectedMovie) {
+    //   let similarMovies = movies.filter((movie) => {
+    //     return (
+    //       movie.genre.name === selectedMovie.genre.name &&
+    //       movie.title !== selectedMovie.title
+    //     );
+    //   });
+    //   console.log(similarMovies);
+    //   return (
+    //     <>
+    //       <MovieView
+    //         movieData={selectedMovie}
+    //         onBackClick={() => setSelectedMovie(null)}
+    //       />
+    //       <hr />
+    //       <h2>Similar movies</h2>
+    //       {similarMovies.map((movie) => (
+    //         <MovieCard
+    //           key={movie.id}
+    //           movieData={movie}
+    //           onMovieClick={(newSelectedMovie) => {
+    //             setSelectedMovie(newSelectedMovie);
+    //           }}
+    //         />
+    //       ))}
+    //     </>
+    //   );
+    // }
+    // if (movies.length === 0) {
+    //   return <div>The list of movies is empty</div>;
+    // }
+    // return (
+    //   <>
+    //     <div>
+    //       {movies.map((movie) => (
+    //         <MovieCard
+    //           key={movie.id}
+    //           movieData={movie}
+    //           onMovieClick={(newSelectedMovie) => {
+    //             setSelectedMovie(newSelectedMovie);
+    //           }}
+    //         />
+    //       ))}
+    //     </div>
+    //     <button
+    //       onClick={() => {
+    //         setUser(null);
+    //         setToken(null);
+    //         localStorage.clear();
+    //       }}
+    //     >
+    //       Sign out
+    //     </button>
+    //   </>
+    // );
+    let getMovieView = (selectedMovie)=>{
         let similarMovies = movies.filter((movie)=>{
             return movie.genre.name === selectedMovie.genre.name && movie.title !== selectedMovie.title;
         });
@@ -27358,19 +27409,19 @@ const MainView = ()=>{
                     onBackClick: ()=>setSelectedMovie(null)
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 82,
+                    lineNumber: 143,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 86,
+                    lineNumber: 147,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Similar movies"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 87,
+                    lineNumber: 148,
                     columnNumber: 9
                 }, undefined),
                 similarMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
@@ -27380,51 +27431,75 @@ const MainView = ()=>{
                         }
                     }, movie.id, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 90,
+                        lineNumber: 150,
                         columnNumber: 11
                     }, undefined))
             ]
         }, void 0, true);
-    }
-    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "The list of movies is empty"
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+        children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
+                    onLoggedIn: (user, token)=>{
+                        setUser(user);
+                        setToken(token);
+                    }
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 166,
+                    columnNumber: 11
+                }, undefined),
+                "or",
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 173,
+                    columnNumber: 11
+                }, undefined)
+            ]
+        }, void 0, true) : selectedMovie ? getMovieView(selectedMovie) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            children: "The list is empty!"
+        }, void 0, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 178,
+            columnNumber: 9
+        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                            movieData: movie,
+                            onMovieClick: (newSelectedMovie)=>{
+                                setSelectedMovie(newSelectedMovie);
+                            }
+                        }, movie.id, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 183,
+                            columnNumber: 15
+                        }, undefined))
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 181,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    onClick: ()=>{
+                        setUser(null);
+                        setToken(null);
+                        localStorage.clear();
+                    },
+                    children: "Sign out"
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 192,
+                    columnNumber: 11
+                }, undefined)
+            ]
+        }, void 0, true)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 103,
-        columnNumber: 12
+        lineNumber: 163,
+        columnNumber: 5
     }, undefined);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                        movieData: movie,
-                        onMovieClick: (newSelectedMovie)=>{
-                            setSelectedMovie(newSelectedMovie);
-                        }
-                    }, movie.id, false, {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 110,
-                        columnNumber: 11
-                    }, undefined))
-            }, void 0, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 108,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                onClick: ()=>{
-                    setUser(null);
-                    setToken(null);
-                    localStorage.clear();
-                },
-                children: "Sign out"
-            }, void 0, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 119,
-                columnNumber: 7
-            }, undefined)
-        ]
-    }, void 0, true);
 };
 _s(MainView, "hFDxRpIbGxP6+QKMAcm8hX/Ql7A=");
 _c = MainView;
@@ -27436,7 +27511,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Row":"cMC39"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

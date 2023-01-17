@@ -10,6 +10,8 @@ import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 
+import Row from 'react-bootstrap/Row';
+
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
@@ -54,22 +56,81 @@ export const MainView = () => {
       });
   }, [token]);
 
-  if (!user) {
-    return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        or
-        <SignupView />
-      </>
-    );
-  }
+  // if (!user) {
+  //   return (
+  //     <>
+  //       <LoginView
+  //         onLoggedIn={(user, token) => {
+  //           setUser(user);
+  //           setToken(token);
+  //         }}
+  //       />
+  //       or
+  //       <SignupView />
+  //     </>
+  //   );
+  // }
 
-  if (selectedMovie) {
+  // if (selectedMovie) {
+  //   let similarMovies = movies.filter((movie) => {
+  //     return (
+  //       movie.genre.name === selectedMovie.genre.name &&
+  //       movie.title !== selectedMovie.title
+  //     );
+  //   });
+  //   console.log(similarMovies);
+  //   return (
+  //     <>
+  //       <MovieView
+  //         movieData={selectedMovie}
+  //         onBackClick={() => setSelectedMovie(null)}
+  //       />
+  //       <hr />
+  //       <h2>Similar movies</h2>
+
+  //       {similarMovies.map((movie) => (
+  //         <MovieCard
+  //           key={movie.id}
+  //           movieData={movie}
+  //           onMovieClick={(newSelectedMovie) => {
+  //             setSelectedMovie(newSelectedMovie);
+  //           }}
+  //         />
+  //       ))}
+  //     </>
+  //   );
+  // }
+
+  // if (movies.length === 0) {
+  //   return <div>The list of movies is empty</div>;
+  // }
+
+  // return (
+  //   <>
+  //     <div>
+  //       {movies.map((movie) => (
+  //         <MovieCard
+  //           key={movie.id}
+  //           movieData={movie}
+  //           onMovieClick={(newSelectedMovie) => {
+  //             setSelectedMovie(newSelectedMovie);
+  //           }}
+  //         />
+  //       ))}
+  //     </div>
+  //     <button
+  //       onClick={() => {
+  //         setUser(null);
+  //         setToken(null);
+  //         localStorage.clear();
+  //       }}
+  //     >
+  //       Sign out
+  //     </button>
+  //   </>
+  // );
+
+  let getMovieView = (selectedMovie) => {
     let similarMovies = movies.filter((movie) => {
       return (
         movie.genre.name === selectedMovie.genre.name &&
@@ -85,7 +146,6 @@ export const MainView = () => {
         />
         <hr />
         <h2>Similar movies</h2>
-
         {similarMovies.map((movie) => (
           <MovieCard
             key={movie.id}
@@ -97,34 +157,49 @@ export const MainView = () => {
         ))}
       </>
     );
-  }
-
-  if (movies.length === 0) {
-    return <div>The list of movies is empty</div>;
-  }
+  };
 
   return (
-    <>
-      <div>
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movieData={movie}
-            onMovieClick={(newSelectedMovie) => {
-              setSelectedMovie(newSelectedMovie);
+    <Row>
+      {!user ? (
+        <>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
             }}
           />
-        ))}
-      </div>
-      <button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      >
-        Sign out
-      </button>
-    </>
+          or
+          <SignupView />
+        </>
+      ) : selectedMovie ? (
+        getMovieView(selectedMovie)
+      ) : movies.length === 0 ? (
+        <div>The list is empty!</div>
+      ) : (
+        <>
+          <div>
+            {movies.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                movieData={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => {
+              setUser(null);
+              setToken(null);
+              localStorage.clear();
+            }}
+          >
+            Sign out
+          </button>
+        </>
+      )}
+    </Row>
   );
 };

@@ -174,7 +174,7 @@ export const MainView = () => {
               setToken(token);
             }}
           />
-          <div className='mx-4 text-muted text-end'>
+          <div className='mx-4 mt-2 text-muted text-end'>
             Don't have an account? <br />
             Registrate now!
           </div>

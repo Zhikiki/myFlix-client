@@ -56,7 +56,7 @@ export const LoginView = ({ onLoggedIn }) => {
       <Row>
         <Col>
           <CardGroup>
-            <Card className='border-0 mt-'>
+            <Card className='border-0'>
               <Card.Body>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group controlId='formUsername' className='mt-2'>
@@ -72,7 +72,7 @@ export const LoginView = ({ onLoggedIn }) => {
                       placeholder='Enter your name'
                     />
                   </Form.Group>
-                  <Form.Group controlId='formPassword' className='mt-4'>
+                  <Form.Group controlId='formPassword' className='mt-3'>
                     <Form.Label>Password:</Form.Label>
                     <Form.Control
                       type='password'
@@ -86,7 +86,7 @@ export const LoginView = ({ onLoggedIn }) => {
                   </Form.Group>
                   <Row>
                     <Col className='text-end'>
-                      <Button variant='primary' type='submit' className='mt-4'>
+                      <Button variant='primary' type='submit' className='mt-3'>
                         Submit
                       </Button>
                     </Col>

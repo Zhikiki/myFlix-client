@@ -10,7 +10,9 @@ import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -140,10 +142,13 @@ export const MainView = () => {
     console.log(similarMovies);
     return (
       <>
-        <MovieView
-          movieData={selectedMovie}
-          onBackClick={() => setSelectedMovie(null)}
-        />
+        <Col md={8} style={{ border: '1px solid black' }}>
+          <MovieView
+            movieData={selectedMovie}
+            onBackClick={() => setSelectedMovie(null)}
+          />
+        </Col>
+
         <hr />
         <h2>Similar movies</h2>
         {similarMovies.map((movie) => (
@@ -160,35 +165,38 @@ export const MainView = () => {
   };
 
   return (
-    <Row>
+    <Row className='justify-content-md-center'>
       {!user ? (
-        <>
+        <Col md={5}>
           <LoginView
             onLoggedIn={(user, token) => {
               setUser(user);
               setToken(token);
             }}
           />
-          or
+          <div className='mx-4 text-muted text-end'>
+            Don't have an account? <br />
+            Registrate now!
+          </div>
           <SignupView />
-        </>
+        </Col>
       ) : selectedMovie ? (
         getMovieView(selectedMovie)
       ) : movies.length === 0 ? (
         <div>The list is empty!</div>
       ) : (
         <>
-          <div>
-            {movies.map((movie) => (
+          {movies.map((movie) => (
+            <Col className='mb-5' key={movie.id} md={3}>
               <MovieCard
-                key={movie.id}
                 movieData={movie}
                 onMovieClick={(newSelectedMovie) => {
                   setSelectedMovie(newSelectedMovie);
                 }}
               />
-            ))}
-          </div>
+            </Col>
+          ))}
+
           <button
             onClick={() => {
               setUser(null);

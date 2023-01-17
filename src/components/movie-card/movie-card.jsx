@@ -13,15 +13,13 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
       onClick={() => {
         onMovieClick(movieData);
       }}
+      className='h-100'
     >
       <Card.Img variant='top' src={movieData.image} />
       <Card.Body>
         <Card.Title>{movieData.title}</Card.Title>
         <Card.Text>{movieData.description}</Card.Text>
-        <Button
-          variant='secondary'
-          size='sm'
-        >
+        <Button variant='secondary' size='sm'>
           Details
         </Button>
       </Card.Body>

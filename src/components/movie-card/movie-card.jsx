@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // Importing bootstrap components
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Row, Col } from 'react-bootstrap';
 
 // Movie card receivs property from the MainView
 // Property = result of function movies.map = movie
@@ -9,17 +9,16 @@ import { Button, Card } from 'react-bootstrap';
 export const MovieCard = ({ movieData, onMovieClick }) => {
   return (
     <Card
-      style={{ width: '18rem' }}
       onClick={() => {
         onMovieClick(movieData);
       }}
-      className='h-100'
+      className='h-100 d-flex align-items-end flex-column'
     >
-      <Card.Img variant='top' src={movieData.image} />
+      <Card.Img variant='top' src={movieData.image} className='img-fluid ' />
       <Card.Body>
         <Card.Title>{movieData.title}</Card.Title>
         <Card.Text>{movieData.description}</Card.Text>
-        <Button variant='secondary' size='sm'>
+        <Button variant='secondary' size='sm' className='mt-auto'>
           Details
         </Button>
       </Card.Body>

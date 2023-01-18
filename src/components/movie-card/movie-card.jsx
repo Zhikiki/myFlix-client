@@ -12,15 +12,27 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
       onClick={() => {
         onMovieClick(movieData);
       }}
-      className='h-100 d-flex align-items-end flex-column'
+      className='h-100'
     >
-      <Card.Img variant='top' src={movieData.image} className='img-fluid ' />
-      <Card.Body>
-        <Card.Title>{movieData.title}</Card.Title>
-        <Card.Text>{movieData.description}</Card.Text>
-        <Button variant='secondary' size='sm' className='mt-auto'>
-          Details
-        </Button>
+      <Row className='h-50'>
+        <Col className='h-100 text-center mt-3'>
+          <Card.Img
+            variant='top'
+            src={movieData.image}
+            className='img-fluid h-100 w-auto'
+          />
+        </Col>
+      </Row>
+
+      <Card.Body className='d-flex flex-column'>
+        <Card.Title className='mt-2'>{movieData.title}</Card.Title>
+
+        <Card.Text className='mt-3'>{movieData.description}</Card.Text>
+        <div className='mt-auto text-end'>
+          <Button variant='secondary' size='sm' className='mt-auto'>
+            Details
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );

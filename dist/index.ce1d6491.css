@@ -12009,4 +12009,8 @@ h1, .h1 {
   font-size: 3.5rem;
 }
 
+.movie-view-img {
+  max-height: 450px;
+}
+
 /*# sourceMappingURL=index.ce1d6491.css.map */

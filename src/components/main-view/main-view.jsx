@@ -143,7 +143,7 @@ export const MainView = () => {
     console.log(similarMovies);
     return (
       <>
-        <Col md={8} style={{ border: '1px solid black' }}>
+        <Col style={{ border: '1px solid black' }}>
           <MovieView
             movieData={selectedMovie}
             onBackClick={() => setSelectedMovie(null)}

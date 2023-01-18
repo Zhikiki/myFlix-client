@@ -9,3 +9,7 @@ $body-color: $color;
 h1 {
   font-size: $font-size-base * 3.5;
 }
+
+.movie-view-img {
+  max-height: 450px;
+}

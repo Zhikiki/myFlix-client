@@ -19,7 +19,7 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
           <Card.Img
             variant='top'
             src={movieData.image}
-            className='img-fluid h-100 w-auto'
+            className='img-fluid h-100 w-auto movie-card-img'
           />
         </Col>
       </Row>

@@ -143,23 +143,26 @@ export const MainView = () => {
     console.log(similarMovies);
     return (
       <>
-        <Col style={{ border: '1px solid black' }}>
+        <Col>
           <MovieView
             movieData={selectedMovie}
             onBackClick={() => setSelectedMovie(null)}
           />
         </Col>
 
+        {/* <hr /> */}
+        <h2 className='mt-0'>Similar movies</h2>
         <hr />
-        <h2>Similar movies</h2>
         {similarMovies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movieData={movie}
-            onMovieClick={(newSelectedMovie) => {
-              setSelectedMovie(newSelectedMovie);
-            }}
-          />
+          <Col className='mb-5' key={movie.id} xs={12} sm={6} md={4} lg={3}>
+            <MovieCard
+              key={movie.id}
+              movieData={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          </Col>
         ))}
       </>
     );

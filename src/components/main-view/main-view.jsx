@@ -150,7 +150,6 @@ export const MainView = () => {
           />
         </Col>
 
-        {/* <hr /> */}
         <h2 className='mt-0'>Similar movies</h2>
         <hr />
         {similarMovies.map((movie) => (

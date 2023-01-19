@@ -1,4 +1,14 @@
 import { useState } from 'react';
+import {
+  Button,
+  Form,
+  Card,
+  CardGroup,
+  Container,
+  Col,
+  Row,
+} from 'react-bootstrap';
+import CardHeader from 'react-bootstrap/esm/CardHeader';
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -36,31 +46,57 @@ export const LoginView = ({ onLoggedIn }) => {
       });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type='text'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength='3'
-          pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
-          title="Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&"
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
-          title="Password may only contain letters, numbers and special characters: .,'-!?%&"
-        />
-      </label>
-      <button type='submit'>Submit</button>
-    </form>
+    <Container>
+      <Row className='justify-content-md-center'>
+        <Col md={4}>
+          <div className='mt-5 text-left text-muted'>Welcome to</div>
+          <h1 className='text-left font-weight-bold'>MyFlix</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card className='border-0'>
+              <Card.Body>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId='formUsername' className='mt-2'>
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                      type='text'
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                      minLength='3'
+                      pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
+                      title="Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&"
+                      placeholder='Enter your name'
+                    />
+                  </Form.Group>
+                  <Form.Group controlId='formPassword' className='mt-3'>
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                      type='password'
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
+                      title="Password may only contain letters, numbers and special characters: .,'-!?%&"
+                      placeholder='Enter your password'
+                    />
+                  </Form.Group>
+                  <Row>
+                    <Col className='text-end'>
+                      <Button variant='primary' type='submit' className='mt-3'>
+                        Submit
+                      </Button>
+                    </Col>
+                  </Row>
+                </Form>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 };

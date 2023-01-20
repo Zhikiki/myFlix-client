@@ -1,11 +1,10 @@
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Row, Col } from 'react-bootstrap';
 
-// MovieView receives property from the MainView - movieData
-// Property = result of function user click and giving value to selectedMovie variable
-// selectedMovie contains all info for MovieView component UI
+// MovieView receives property from the MainView - movies
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
 
@@ -56,22 +55,22 @@ export const MovieView = ({ movies }) => {
 };
 
 // I need to rewrite for array. Now MovieView receives array of movies
-
-// MovieView.propTypes = {
-//   movieData: PropTypes.shape({
-//     title: PropTypes.string.isRequired,
-//     image: PropTypes.string.isRequired,
-//     director: PropTypes.shape({
-//       name: PropTypes.string.isRequired,
-//       bio: PropTypes.string.isRequired,
-//       birth: PropTypes.string.isRequired,
-//       death: PropTypes.string,
-//     }).isRequired,
-//     genre: PropTypes.shape({
-//       name: PropTypes.string.isRequired,
-//       description: PropTypes.string.isRequired,
-//     }).isRequired,
-//     image: PropTypes.string.isRequired,
-//   }).isRequired,
-//   onBackClick: PropTypes.func.isRequired,
-// };
+MovieView.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      director: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        bio: PropTypes.string.isRequired,
+        birth: PropTypes.string.isRequired,
+        death: PropTypes.string,
+      }).isRequired,
+      genre: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+      }).isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

@@ -11,7 +11,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
       sticky='top'
     >
       <Container>
-        <Navbar.Brand as={Link} to='/' class='h2'>
+        <Navbar.Brand as={Link} to='/' className='h2 my-auto'>
           MyFlix
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />

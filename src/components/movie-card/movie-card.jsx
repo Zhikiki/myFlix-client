@@ -1,19 +1,16 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // Importing bootstrap components
 import { Button, Card, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 // Movie card receivs property from the MainView
 // Property = result of function movies.map = movie
 // each movie contains id and title
-export const MovieCard = ({ movieData, onMovieClick }) => {
+export const MovieCard = ({ movieData }) => {
   return (
-    <Card
-      onClick={() => {
-        onMovieClick(movieData);
-      }}
-      className='h-100'
-    >
+    <Card className='h-100'>
       <Row className='h-50'>
         <Col className='h-100 text-center mt-3'>
           <Card.Img
@@ -26,19 +23,20 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
 
       <Card.Body className='d-flex flex-column'>
         <Card.Title className='mt-2'>{movieData.title}</Card.Title>
-
         <Card.Text className='mt-3'>{movieData.description}</Card.Text>
         <div className='mt-auto text-end'>
-          <Button variant='secondary' size='sm' className='mt-auto'>
-            Details
-          </Button>
+          <Link to={`/movies/${encodeURIComponent(movieData.id)}`}>
+            <Button variant='secondary' size='sm' className='mt-auto'>
+              Details
+            </Button>
+          </Link>
         </div>
       </Card.Body>
     </Card>
   );
 };
 
-// Here is where we define all the props constraints for the BookCard
+// Here is where we define all the props constraints for the MovieCard
 MovieCard.propTypes = {
   movieData: PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -55,5 +53,4 @@ MovieCard.propTypes = {
     }).isRequired,
     image: PropTypes.string.isRequired,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
 };

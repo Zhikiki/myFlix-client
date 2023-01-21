@@ -17,6 +17,7 @@ import Button from 'react-bootstrap/Button';
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
+import { ProfileView } from '../pofile-view/profile-view';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -275,6 +276,24 @@ export const MainView = () => {
                         </Col>
                       </Row>
                     </>
+                  )}
+                </>
+              }
+            />
+
+            {/* User Profile view */}
+            <Route
+              path='/users'
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to='/login' replace />
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <Col>
+                      <ProfileView />
+                    </Col>
                   )}
                 </>
               }

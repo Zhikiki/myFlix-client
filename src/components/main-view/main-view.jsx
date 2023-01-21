@@ -229,7 +229,7 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col>
-                      <MovieView movies={movies} />
+                      <MovieView movies={movies} user={user} />
                     </Col>
                   )}
                 </>

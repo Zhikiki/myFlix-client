@@ -1,15 +1,53 @@
 import { useParams } from 'react-router';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Row, Col } from 'react-bootstrap';
 import { FaHeart } from 'react-icons/fa';
-// MovieView receives property from the MainView - movies
-export const MovieView = ({ movies }) => {
-  const { movieId } = useParams();
 
+// MovieView receives property from the MainView - movies
+export const MovieView = ({ movies, user }) => {
+  const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
-  console.log(movie);
+  const token = localStorage.getItem('token');
+
+  const alreadyFavorite = user.FavoriteMovies.find(
+    (favMovieId) => favMovieId === movieId
+  );
+
+  // I want icon to be always red if movie exists in the list of favorite movies
+  // if (alreadyFavorite) {
+  //  document.getElementById('#favMovieButton').classList.add('favorite-movie');
+  // }
+  console.log(user);
+
+  const addFavorite = () => {
+    if (!token) return;
+    if (alreadyFavorite)
+      return alert('This movie is already in the list of favorite');
+
+    const url = `https://movie-api-zhikiki.herokuapp.com/users/${user.Username}/movies/${movieId}`;
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(url, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        alert(`${movie.title} is added to the list of favorites`);
+        document
+          .getElementById('favMovieButton')
+          .classList.add('favorite-movie');
+      })
+      .catch((e) => {
+        alert('Something went wrong');
+      });
+  };
 
   return (
     <Row className='d-flex flex-row-reverse p-3'>
@@ -44,8 +82,8 @@ export const MovieView = ({ movies }) => {
         </div>
         <Row className='d-flex flex-row justify-content-between mt-auto mb-md-4'>
           <Col className='text-start'>
-            <Link to={`/`} >
-              <FaHeart className='favorite-icon' />
+            <Link onClick={() => addFavorite()}>
+              <FaHeart className='favorite-icon' id='favMovieButton' />
             </Link>
           </Col>
           <Col className='text-end'>

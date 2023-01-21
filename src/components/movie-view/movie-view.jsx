@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Row, Col } from 'react-bootstrap';
-
+import { FaHeart } from 'react-icons/fa';
 // MovieView receives property from the MainView - movies
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
@@ -42,13 +42,20 @@ export const MovieView = ({ movies }) => {
           <div className='text-decoration-underline mb-2'>Description: </div>
           <span>{movie.description}</span>
         </div>
-        <div className='mt-auto text-end mb-md-4'>
-          <Link to={`/`}>
-            <Button variant='secondary' size='lg'>
-              Back
-            </Button>
-          </Link>
-        </div>
+        <Row className='d-flex flex-row justify-content-between mt-auto mb-md-4'>
+          <Col className='text-start'>
+            <Link to={`/`} >
+              <FaHeart className='favorite-icon' />
+            </Link>
+          </Col>
+          <Col className='text-end'>
+            <Link to={`/`}>
+              <Button variant='secondary' size='lg'>
+                Back
+              </Button>
+            </Link>
+          </Col>
+        </Row>
       </Col>
     </Row>
   );

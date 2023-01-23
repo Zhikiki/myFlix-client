@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Row, Col } from 'react-bootstrap';
-import { FaHeart } from 'react-icons/fa';
-// MovieView receives property from the MainView - movies
-export const MovieView = ({ movies }) => {
-  const { movieId } = useParams();
+import { FavoriteIcon } from '../favorite-icon/favorite-icon';
 
+// MovieView receives property from the MainView - movies
+export const MovieView = ({ movies, user, updateUserOnFav }) => {
+  console.log('MovieView prop', updateUserOnFav);
+  const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
-  console.log(movie);
 
   return (
     <Row className='d-flex flex-row-reverse p-3'>
@@ -44,9 +44,7 @@ export const MovieView = ({ movies }) => {
         </div>
         <Row className='d-flex flex-row justify-content-between mt-auto mb-md-4'>
           <Col className='text-start'>
-            <Link to={`/`} >
-              <FaHeart className='favorite-icon' />
-            </Link>
+            <FavoriteIcon user={user} movie={movie} updateUserOnFav={updateUserOnFav} />
           </Col>
           <Col className='text-end'>
             <Link to={`/`}>

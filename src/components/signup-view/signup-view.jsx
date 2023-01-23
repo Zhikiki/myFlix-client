@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import CardGroup from 'react-bootstrap/CardGroup';
+import { EntranceGreating } from '../entrance-greating/entrance-greating';
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
@@ -40,6 +41,7 @@ export const SignupView = () => {
 
   return (
     <Container>
+      <EntranceGreating />
       <Row>
         <Col>
           <CardGroup>

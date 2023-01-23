@@ -32,6 +32,9 @@ export const MainView = () => {
       return;
     }
 
+    // Todo: Pull the user object from (GET /users/userid) from API
+    // and update the state
+
     fetch('https://movie-api-zhikiki.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -228,7 +231,18 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col>
-                      <MovieView movies={movies} user={user} />
+                      <MovieView
+                        movies={movies}
+                        user={user}
+                        updateUserOnFav={(user) => {
+                          console.log("Update User called", user);
+                          setUser(user);
+                          localStorage.setItem(
+                            'user',
+                            JSON.stringify(user)
+                          );
+                        }}
+                      />
                     </Col>
                   )}
                 </>

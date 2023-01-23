@@ -6,56 +6,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Row, Col } from 'react-bootstrap';
 import { FaHeart } from 'react-icons/fa';
+import { FavoriteIcon } from '../favorite-icon/favorite-icon';
 
 // MovieView receives property from the MainView - movies
-export const MovieView = ({ movies, user }) => {
-  const [userData, setUserData] = useState(user)
+export const MovieView = ({ movies, user, updateUserOnFav }) => {
+  console.log('MovieView prop', updateUserOnFav);
+  const [userData, setUserData] = useState(user);
   const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
-  const token = localStorage.getItem('token');
 
-  const alreadyFavorite = userData.FavoriteMovies.find(
-    (favMovieId) => favMovieId === movieId
-  );
-
-  // I want icon to be always red if movie exists in the list of favorite movies
-  useEffect(() => {
-    if (!alreadyFavorite) {
-      console.log('Movie is not favorite');
-    } else {
-      document.querySelector('#favMovieButton').classList.add('favorite-movie');
-    }
-  });
-
-  console.log(userData);
-
-  const addFavorite = () => {
-    if (!token) return;
-    if (alreadyFavorite)
-      return alert('This movie is already in the list of favorite');
-
-    const url = `https://movie-api-zhikiki.herokuapp.com/users/${user.Username}/movies/${movieId}`;
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    fetch(url, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        alert(`${movie.title} is added to the list of favorites`);
-        setUserData(data)
-        document
-          .querySelector('#favMovieButton')
-          .classList.add('favorite-movie');
-      })
-      .catch((e) => {
-        alert('Something went wrong');
-      });
-  };
+  console.log('Hello World....', userData);
 
   return (
     <Row className='d-flex flex-row-reverse p-3'>
@@ -90,13 +50,7 @@ export const MovieView = ({ movies, user }) => {
         </div>
         <Row className='d-flex flex-row justify-content-between mt-auto mb-md-4'>
           <Col className='text-start'>
-            <Link
-              onClick={() => addFavorite()}
-              className='favorite-icon'
-              id='favMovieButton'
-            >
-              <FaHeart />
-            </Link>
+            <FavoriteIcon user={user} movie={movie} updateUserOnFav={updateUserOnFav} />
           </Col>
           <Col className='text-end'>
             <Link to={`/`}>

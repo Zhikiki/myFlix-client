@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FavoriteIcon } from '../favorite-icon/favorite-icon';
 
-// Importing bootstrap components
+
 import { Button, Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-// Movie card receivs property from the MainView
-// Property = result of function movies.map = movie
-// each movie contains id and title
+
 export const MovieCard = ({ movieData, user, updateUserOnFav }) => {
   return (
     <Card className='h-100'>

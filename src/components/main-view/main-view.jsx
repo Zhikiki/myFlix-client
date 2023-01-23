@@ -235,12 +235,9 @@ export const MainView = () => {
                         movies={movies}
                         user={user}
                         updateUserOnFav={(user) => {
-                          console.log("Update User called", user);
+                          console.log('Update User called', user);
                           setUser(user);
-                          localStorage.setItem(
-                            'user',
-                            JSON.stringify(user)
-                          );
+                          localStorage.setItem('user', JSON.stringify(user));
                         }}
                       />
                     </Col>
@@ -268,7 +265,18 @@ export const MainView = () => {
                           md={4}
                           lg={3}
                         >
-                          <MovieCard movieData={movie} />
+                          <MovieCard
+                            movieData={movie}
+                            user={user}
+                            updateUserOnFav={(user) => {
+                              console.log('Update User called', user);
+                              setUser(user);
+                              localStorage.setItem(
+                                'user',
+                                JSON.stringify(user)
+                              );
+                            }}
+                          />
                         </Col>
                       ))}
                       <Row>

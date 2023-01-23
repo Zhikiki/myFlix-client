@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FavoriteIcon } from '../favorite-icon/favorite-icon';
 
 // Importing bootstrap components
 import { Button, Card, Row, Col } from 'react-bootstrap';
@@ -8,7 +9,7 @@ import { Link } from 'react-router-dom';
 // Movie card receivs property from the MainView
 // Property = result of function movies.map = movie
 // each movie contains id and title
-export const MovieCard = ({ movieData }) => {
+export const MovieCard = ({ movieData, user, updateUserOnFav }) => {
   return (
     <Card className='h-100'>
       <Row className='h-50'>
@@ -24,13 +25,22 @@ export const MovieCard = ({ movieData }) => {
       <Card.Body className='d-flex flex-column'>
         <Card.Title className='mt-2'>{movieData.title}</Card.Title>
         <Card.Text className='mt-3'>{movieData.description}</Card.Text>
-        <div className='mt-auto text-end'>
-          <Link to={`/movies/${encodeURIComponent(movieData.id)}`}>
-            <Button variant='secondary' size='sm' className='mt-auto'>
-              Details
-            </Button>
-          </Link>
-        </div>
+        <Row className='d-flex flex-row justify-content-between mt-auto'>
+          <Col className='text-start'>
+            <FavoriteIcon
+              user={user}
+              movie={movieData}
+              updateUserOnFav={updateUserOnFav}
+            />
+          </Col>
+          <Col className='text-end'>
+            <Link to={`/movies/${encodeURIComponent(movieData.id)}`}>
+              <Button variant='secondary' size='sm' className='mt-auto'>
+                Details
+              </Button>
+            </Link>
+          </Col>
+        </Row>
       </Card.Body>
     </Card>
   );

@@ -26,13 +26,12 @@ export const FavoriteIcon = ({ user, movie, updateUserOnFav }) => {
   //   }
   // });
 
-  const addFavorite = () => {
+  const toggleFavorite = () => {
     if (!token) return;
 
     const url = `https://movie-api-zhikiki.herokuapp.com/users/${user.Username}/movies/${movie.id}`;
 
     if (alreadyFavorite) {
-      alert('This movie is already in the list of favorite');
       const requestOptions = {
         method: 'DELETE',
         headers: {
@@ -43,18 +42,15 @@ export const FavoriteIcon = ({ user, movie, updateUserOnFav }) => {
       fetch(url, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          alert(`${movie.title} is deleted from the list of favorites`);
-          console.log(updateUserOnFav);
+          // console.log(data)
+          // console.log(updateUserOnFav);
           updateUserOnFav(data);
-          document
-            .querySelector('#favMovieButton')
-            .classList.remove('favorite-movie');
+          document.querySelector('svg').classList.remove('favorite-movie');
+          alert(`${movie.title} is deleted from the list of favorites`);
         })
         .catch((e) => {
           alert('Something went wrong');
         });
-
     } else {
       const requestOptions = {
         method: 'POST',
@@ -66,9 +62,9 @@ export const FavoriteIcon = ({ user, movie, updateUserOnFav }) => {
       fetch(url, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           alert(`${movie.title} is added to the list of favorites`);
-          console.log(updateUserOnFav);
+          // console.log(updateUserOnFav);
           updateUserOnFav(data);
           document
             .querySelector('#favMovieButton')
@@ -107,7 +103,7 @@ export const FavoriteIcon = ({ user, movie, updateUserOnFav }) => {
 
   return (
     <Link
-      onClick={() => addFavorite()}
+      onClick={() => toggleFavorite()}
       className='favorite-icon'
       id='favMovieButton'
     >

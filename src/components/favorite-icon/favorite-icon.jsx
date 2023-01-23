@@ -18,41 +18,91 @@ export const FavoriteIcon = ({ user, movie, updateUserOnFav }) => {
     (favMovieId) => favMovieId === movie.id
   );
 
-  useEffect(() => {
-    if (!alreadyFavorite) {
-      console.log('Movie is not favorite');
-    } else {
-      document.querySelector('#favMovieButton').classList.add('favorite-movie');
-    }
-  });
+  // useEffect(() => {
+  //   if (!alreadyFavorite) {
+  //     console.log('Movie is not favorite');
+  //   } else {
+  //     document.querySelector('#favMovieButton').classList.add('favorite-movie');
+  //   }
+  // });
 
   const addFavorite = () => {
     if (!token) return;
-    if (alreadyFavorite)
-      return alert('This movie is already in the list of favorite');
 
     const url = `https://movie-api-zhikiki.herokuapp.com/users/${user.Username}/movies/${movie.id}`;
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
 
-    fetch(url, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        alert(`${movie.title} is added to the list of favorites`);
-        console.log(updateUserOnFav);
-        updateUserOnFav(data);
-        document
-          .querySelector('#favMovieButton')
-          .classList.add('favorite-movie');
-      })
-      .catch((e) => {
-        alert('Something went wrong');
-      });
+    if (alreadyFavorite) {
+      alert('This movie is already in the list of favorite');
+      const requestOptions = {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      fetch(url, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          alert(`${movie.title} is deleted from the list of favorites`);
+          console.log(updateUserOnFav);
+          updateUserOnFav(data);
+          document
+            .querySelector('#favMovieButton')
+            .classList.remove('favorite-movie');
+        })
+        .catch((e) => {
+          alert('Something went wrong');
+        });
+
+    } else {
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      fetch(url, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          alert(`${movie.title} is added to the list of favorites`);
+          console.log(updateUserOnFav);
+          updateUserOnFav(data);
+          document
+            .querySelector('#favMovieButton')
+            .classList.add('favorite-movie');
+        })
+        .catch((e) => {
+          alert('Something went wrong');
+        });
+    }
+    // if (alreadyFavorite)
+    //   return alert('This movie is already in the list of favorite');
+
+    // const url = `https://movie-api-zhikiki.herokuapp.com/users/${user.Username}/movies/${movie.id}`;
+    // const requestOptions = {
+    //   method: 'POST',
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // };
+
+    // fetch(url, requestOptions)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     alert(`${movie.title} is added to the list of favorites`);
+    //     console.log(updateUserOnFav);
+    //     updateUserOnFav(data);
+    // document
+    //   .querySelector('#favMovieButton')
+    //   .classList.add('favorite-movie');
+    // })
+    // .catch((e) => {
+    //   alert('Something went wrong');
+    // });
   };
 
   return (
@@ -61,7 +111,7 @@ export const FavoriteIcon = ({ user, movie, updateUserOnFav }) => {
       className='favorite-icon'
       id='favMovieButton'
     >
-      <FaHeart />
+      {alreadyFavorite ? <FaHeart className='favorite-movie' /> : <FaHeart />}
     </Link>
   );
 };

@@ -1,21 +1,15 @@
 import { useParams } from 'react-router';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Row, Col } from 'react-bootstrap';
-import { FaHeart } from 'react-icons/fa';
 import { FavoriteIcon } from '../favorite-icon/favorite-icon';
 
 // MovieView receives property from the MainView - movies
 export const MovieView = ({ movies, user, updateUserOnFav }) => {
   console.log('MovieView prop', updateUserOnFav);
-  const [userData, setUserData] = useState(user);
   const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
-
-  console.log('Hello World....', userData);
 
   return (
     <Row className='d-flex flex-row-reverse p-3'>

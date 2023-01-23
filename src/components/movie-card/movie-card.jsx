@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FavoriteIcon } from '../favorite-icon/favorite-icon';
 
-
 import { Button, Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
 
 export const MovieCard = ({ movieData, user, updateUserOnFav }) => {
   return (
@@ -23,7 +21,7 @@ export const MovieCard = ({ movieData, user, updateUserOnFav }) => {
       <Card.Body className='d-flex flex-column'>
         <Card.Title className='mt-2'>{movieData.title}</Card.Title>
         <Card.Text className='mt-3'>{movieData.description}</Card.Text>
-        <Row className='d-flex flex-row justify-content-between mt-auto'>
+        <Row className='d-flex flex-row justify-content-between align-items-baseline mt-auto'>
           <Col className='text-start'>
             <FavoriteIcon
               user={user}

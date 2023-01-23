@@ -56,7 +56,6 @@ export const MainView = () => {
           };
         });
         setMovies(moviesFromApi);
-        console.log('movies from api:', data);
       })
       .catch((error) => {
         console.log(error);
@@ -260,7 +259,6 @@ export const MainView = () => {
                       ))}
                       <Row>
                         <Col className='text-end mt-2'>
-                          {console.log(movies)}
                           <Button
                             onClick={() => {
                               setUser(null);

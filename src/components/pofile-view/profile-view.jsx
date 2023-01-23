@@ -4,11 +4,18 @@ import { MovieCard } from '../movie-card/movie-card';
 import moment from 'moment';
 import { useState } from 'react';
 
-export const ProfileView = ({ user }) => {
+export const ProfileView = ({ user, movies }) => {
   const [username, setUsername] = useState(user.Username);
   const [password, setPassword] = useState(user.Password);
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
+
+  console.log(movies);
+  let favoriteMoviesList = movies.filter((m) =>
+    user.FavoriteMovies.includes(m.id)
+  );
+  console.log(favoriteMoviesList);
+
   let userBirthday = moment.utc(user.Birthday).format('MM/DD/YYYY');
   console.log(user);
 
@@ -96,6 +103,28 @@ export const ProfileView = ({ user }) => {
             </Card>
           </CardGroup>
         </Col>
+      </Row>
+      <Row>
+        {favoriteMoviesList.length === 0 ? (
+          <Col>The list of favorite movies is empty</Col>
+        ) : (
+          <>
+            <div className='text-start h2 mb-4'>List of favorite movies</div>
+            {favoriteMoviesList.map((movie) => (
+              <Col className='mb-5' key={movie.id} xs={12} sm={6} md={4} lg={3}>
+                <MovieCard
+                  movieData={movie}
+                  user={user}
+                  updateUserOnFav={(user) => {
+                    console.log('Update User called', user);
+                    setUser(user);
+                    localStorage.setItem('user', JSON.stringify(user));
+                  }}
+                />
+              </Col>
+            ))}
+          </>
+        )}
       </Row>
     </>
   );

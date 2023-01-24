@@ -35,7 +35,6 @@ export const UpdateView = ({ storedToken, storedUser }) => {
       Email: email,
       Birthday: birthday,
     };
-    console.log(data);
 
     fetch(
       `https://movie-api-zhikiki.herokuapp.com/users/${storedUser.Username}`,

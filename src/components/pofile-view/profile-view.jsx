@@ -1,11 +1,10 @@
-import { useParams } from 'react-router';
 import React, { useState } from 'react';
 import { Button, Form, Row, Col, CardGroup, Card, Form } from 'react-bootstrap';
-import { MovieCard } from '../movie-card/movie-card';
-import moment from 'moment';
+
 import { useState } from 'react';
 
 import { UserInfo } from './user-info';
+import { FavoriteMovies } from './favorite-movies';
 
 export const ProfileView = ({ movies }) => {
   const storedToken = localStorage.getItem('token');
@@ -20,12 +19,6 @@ export const ProfileView = ({ movies }) => {
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
 
-  let favoriteMoviesList = movies.filter((m) =>
-    user.FavoriteMovies.includes(m.id)
-  );
-
-  let userBirthday = moment.utc(birthday).format('MM/DD/YYYY');
-  console.log(username);
 
   const updateUser = (username) => {
     fetch(`https://movie-api-zhikiki.herokuapp.com/users/${username}`, {
@@ -142,28 +135,7 @@ export const ProfileView = ({ movies }) => {
           </CardGroup>
         </Col>
       </Row>
-      <Row>
-        {favoriteMoviesList.length === 0 ? (
-          <Col>The list of favorite movies is empty</Col>
-        ) : (
-          <>
-            <div className='text-start h2 mb-4'>List of favorite movies</div>
-            {favoriteMoviesList.map((movie) => (
-              <Col className='mb-5' key={movie.id} xs={12} sm={6} md={4} lg={3}>
-                <MovieCard
-                  movieData={movie}
-                  user={user}
-                  updateUserOnFav={(user) => {
-                    console.log('Update User called', user);
-                    setUser(user);
-                    localStorage.setItem('user', JSON.stringify(user));
-                  }}
-                />
-              </Col>
-            ))}
-          </>
-        )}
-      </Row>
+      <FavoriteMovies movies={movies} user={storedUser} />
     </>
   );
 };

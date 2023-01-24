@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router';
 import { Card, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -12,6 +13,7 @@ export const SignupView = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,14 +31,20 @@ export const SignupView = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((response) => {
-      if (response.ok) {
-        alert('Signup successful');
-        window.location.reload();
-      } else {
-        alert('Signup failed');
-      }
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Signup successful');
+          window.location.reload();
+          console.log(`Signup response: ${response}`);
+
+          // need to send user to login viev
+        } else {
+          alert('Signup failed');
+        }
+      })
+      .catch((e) => console.log(e));
+    navigate('/login');
   };
 
   return (

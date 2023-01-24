@@ -62,7 +62,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
   };
 
   return (
-    <Row mt-2>
+    <Row className="mt-2">
       <Col md={5}>
         <CardGroup>
           <Card className='border-0'>

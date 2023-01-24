@@ -5,50 +5,78 @@ import { MovieCard } from '../movie-card/movie-card';
 import moment from 'moment';
 import { useState } from 'react';
 
-export const ProfileView = ({ user, movies }) => {
-  // const { username } = useParams();
-  // console.log(username);
+import { UserInfo } from './user-info';
+
+export const ProfileView = ({ movies }) => {
+  const storedToken = localStorage.getItem('token');
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  console.log(storedUser);
+
   const [username, setUsername] = useState(user.Username);
-  const [password, setPassword] = useState(user.Password);
+  const [password, setPassword] = useState();
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
 
-  console.log(movies);
   let favoriteMoviesList = movies.filter((m) =>
     user.FavoriteMovies.includes(m.id)
   );
 
-  let userBirthday = moment.utc(user.Birthday).format('MM/DD/YYYY');
-  console.log(user);
-  console.log(birthday);
-  console.log(user.Birthday);
+  let userBirthday = moment.utc(birthday).format('MM/DD/YYYY');
+  console.log(username);
+
+  const updateUser = (username) => {
+    fetch(`https://movie-api-zhikiki.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
+      .then((updatedUser) => {
+        if (updatedUser) {
+          setUser(updatedUser);
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+        }
+      });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = {
-      Username: username,
+      Username: username ? username : storedUser.Username,
       Password: password,
-      Email: email,
-      Birthday: birthday,
+      Email: email ? email : storedUser.Email,
+      Birthday: birthday ? birthday : storedUser.Birthday,
     };
     console.log(data);
+
+    fetch(
+      `https://movie-api-zhikiki.herokuapp.com/users/${storedUser.Username}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          alert('Changes saved');
+          updateUser(username).then(() => window.location.reload());
+        } else {
+          alert('Something went wrong');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <>
-      <Row className='d-flex flex-column flex-lg-row ms-2 text-lg-center mt-lg-3 mt-3'>
-        <Col>
-          <span>Username: </span>
-          <span className='fw-bolder'>{user.Username}</span>
-        </Col>
-        <Col>
-          <span>Email: </span>
-          <span className='fw-bolder'>{user.Email}</span>
-        </Col>
-        <Col>
-          <span>Birthday: </span>
-          <span className='fw-bolder'>{userBirthday}</span>
-        </Col>
-      </Row>
+      <UserInfo user={storedUser} />
+
       <Row>
         <Col md={5}>
           <CardGroup>

@@ -1,9 +1,11 @@
-import React from 'react';
-import { Row, Col} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Row, Col } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
 
-
-export const FavoriteMovies = ({ movies, user }) => {
+// Need to fetch user after like/dislike movie, so that
+// relevant info user.FavoriteMovies will be displayed on Home page
+export const FavoriteMovies = ({ movies, storedUser }) => {
+  const [user, setUser] = useState(storedUser ? storedUser : null);
   let favoriteMoviesList = movies.filter((m) =>
     user.FavoriteMovies.includes(m.id)
   );

@@ -15,7 +15,7 @@ export const ProfileView = ({ movies }) => {
       <UserInfo user={storedUser} />
       <UpdateView storedToken={storedToken} storedUser={storedUser} />
       <DeleteUser storedToken={storedToken} storedUser={storedUser} />
-      <FavoriteMovies movies={movies} user={storedUser} />
+      <FavoriteMovies movies={movies} storedUser={storedUser} />
     </>
   );
 };

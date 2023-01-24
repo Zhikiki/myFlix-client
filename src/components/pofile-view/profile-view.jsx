@@ -1,3 +1,4 @@
+import { useParams } from 'react-router';
 import React, { useState } from 'react';
 import { Button, Form, Row, Col, CardGroup, Card, Form } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
@@ -5,6 +6,8 @@ import moment from 'moment';
 import { useState } from 'react';
 
 export const ProfileView = ({ user, movies }) => {
+  // const { username } = useParams();
+  // console.log(username);
   const [username, setUsername] = useState(user.Username);
   const [password, setPassword] = useState(user.Password);
   const [email, setEmail] = useState(user.Email);
@@ -14,14 +17,21 @@ export const ProfileView = ({ user, movies }) => {
   let favoriteMoviesList = movies.filter((m) =>
     user.FavoriteMovies.includes(m.id)
   );
-  console.log(favoriteMoviesList);
 
   let userBirthday = moment.utc(user.Birthday).format('MM/DD/YYYY');
   console.log(user);
+  console.log(birthday);
+  console.log(user.Birthday);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitt successful');
+    const data = {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday,
+    };
+    console.log(data);
   };
   return (
     <>
@@ -49,7 +59,7 @@ export const ProfileView = ({ user, movies }) => {
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type='text'
-                      value={username}
+                      // value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       required
                       minLength='3'
@@ -65,7 +75,7 @@ export const ProfileView = ({ user, movies }) => {
                     <Form.Label>Password:</Form.Label>
                     <Form.Control
                       type='password'
-                      value={password}
+                      // value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
@@ -77,7 +87,7 @@ export const ProfileView = ({ user, movies }) => {
                     <Form.Label>Email:</Form.Label>
                     <Form.Control
                       type='email'
-                      value={email}
+                      // value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       placeholder='Enter email'
@@ -87,7 +97,7 @@ export const ProfileView = ({ user, movies }) => {
                     <Form.Label>Birthday:</Form.Label>
                     <Form.Control
                       type='date'
-                      value={birthday}
+                      // value={birthday}
                       onChange={(e) => setBirthday(e.target.value)}
                     />
                   </Form.Group>

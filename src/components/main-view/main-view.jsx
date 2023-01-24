@@ -303,7 +303,7 @@ export const MainView = () => {
 
             {/* User Profile view */}
             <Route
-              path='/users'
+              path='/users/:username'
               element={
                 <>
                   {!user ? (

@@ -12017,4 +12017,17 @@ h1, .h1 {
   max-height: 350px;
 }
 
+.favorite-icon {
+  color: #6c757d;
+  font-size: 35px;
+}
+
+.favorite-icon:hover {
+  color: #dc143c;
+}
+
+.favorite-movie {
+  color: #dc143c !important;
+}
+
 /*# sourceMappingURL=index.ce1d6491.css.map */

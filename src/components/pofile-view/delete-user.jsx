@@ -34,14 +34,14 @@ export const DeleteUser = () => {
   };
 
   return (
-    <Col md={5} className='text-end px-4'>
+    <Col className='text-end'>
       <div>
         <Button
           onClick={() => handleDeregister(user._id)}
           className='button-delete'
           variant='danger'
         >
-          Delete Account
+          Press here delete your account
         </Button>
       </div>
     </Col>

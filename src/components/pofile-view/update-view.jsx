@@ -65,13 +65,13 @@ export const UpdateView = () => {
   };
 
   return (
-    <Row className='mt-2'>
-      <Col md={5}>
-        <CardGroup>
-          <Card className='border-0'>
-            <Card.Body>
-              <div className='text-start h2 mb-0'>Update user info</div>
-              <Form onSubmit={handleSubmit}>
+    <CardGroup>
+      <Card className='border-0'>
+        <Card.Body>
+          <div className='text-start h2 mb-0'>Update user info</div>
+          <Form onSubmit={handleSubmit}>
+            <Row className='mt-2 d-flex justify-content-between'>
+              <Col md={6}>
                 <Form.Group controlId='forUsername' className='mt-2'>
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
@@ -88,6 +88,8 @@ export const UpdateView = () => {
                     We'll never share your email with anyone else.
                   </Form.Text>
                 </Form.Group>
+              </Col>
+              <Col md={6}>
                 <Form.Group controlId='forPassword' className='mt-2'>
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
@@ -100,6 +102,10 @@ export const UpdateView = () => {
                     placeholder='Create a password'
                   />
                 </Form.Group>
+              </Col>
+            </Row>
+            <Row className='d-flex justify-content-between'>
+              <Col md={6}>
                 <Form.Group controlId='forEmail' className='mt-2'>
                   <Form.Label>Email:</Form.Label>
                   <Form.Control
@@ -110,6 +116,8 @@ export const UpdateView = () => {
                     placeholder='Enter email'
                   />
                 </Form.Group>
+              </Col>
+              <Col md={6}>
                 <Form.Group controlId='forBirthday' className='mt-2'>
                   <Form.Label>Birthday:</Form.Label>
                   <Form.Control
@@ -118,18 +126,18 @@ export const UpdateView = () => {
                     onChange={(e) => setBirthday(e.target.value)}
                   />
                 </Form.Group>
-                <Row>
-                  <Col className='text-end'>
-                    <Button variant='primary' type='submit' className='mt-3'>
-                      Update
-                    </Button>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-          </Card>
-        </CardGroup>
-      </Col>
-    </Row>
+              </Col>
+            </Row>
+            <Row>
+              <Col className='text-end'>
+                <Button variant='primary' type='submit' className='mt-3'>
+                  Update
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+        </Card.Body>
+      </Card>
+    </CardGroup>
   );
 };

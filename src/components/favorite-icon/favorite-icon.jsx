@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { FaHeart } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/reducers/user';
 
 // to get right color of Icon we need to refresh the page
-export const FavoriteIcon = ({ user, movie, updateUserOnFav }) => {
-  const token = localStorage.getItem('token');
+export const FavoriteIcon = ({ movie, updateUserOnFav }) => {
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.token.token);
+  const dispatch = useDispatch();
 
   const alreadyFavorite = user.FavoriteMovies.find(
     (favMovieId) => favMovieId === movie.id
@@ -43,7 +48,7 @@ export const FavoriteIcon = ({ user, movie, updateUserOnFav }) => {
         // console.log(data);
         alert(`${resultAlert}`);
         // console.log(updateUserOnFav);
-        updateUserOnFav(data);
+        dispatch(setUser(data));
         document.querySelector('svg').classList.add('favorite-movie');
       })
       .catch((e) => {

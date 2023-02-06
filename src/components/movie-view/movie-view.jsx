@@ -1,5 +1,5 @@
 import { useParams } from 'react-router';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { Button, Row, Col } from 'react-bootstrap';
@@ -10,7 +10,7 @@ import { MovieCard } from '../movie-card/movie-card';
 export const MovieView = ({ user, updateUserOnFav }) => {
   const movies = useSelector((state) => state.movies.movies);
 
-  console.log('MovieView prop', updateUserOnFav);
+  
   const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
 
@@ -56,9 +56,8 @@ export const MovieView = ({ user, updateUserOnFav }) => {
           <Row className='d-flex flex-row justify-content-between mt-auto mb-md-4'>
             <Col className='text-start'>
               <FavoriteIcon
-                user={user}
                 movie={movie}
-                updateUserOnFav={updateUserOnFav}
+                // updateUserOnFav={updateUserOnFav}
               />
             </Col>
             <Col className='text-end'>

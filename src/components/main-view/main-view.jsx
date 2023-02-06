@@ -143,11 +143,11 @@ console.log(token);
                     <Col>
                       <MovieView
                         user={user}
-                        updateUserOnFav={(user) => {
-                          console.log('Update User called', user);
-                          setUser(user);
-                          localStorage.setItem('user', JSON.stringify(user));
-                        }}
+                        // updateUserOnFav={(user) => {
+                        //   console.log('Update User called', user);
+                        //   setUser(user);
+                        //   localStorage.setItem('user', JSON.stringify(user));
+                        // }}
                       />
                     </Col>
                   )}

@@ -1,13 +1,15 @@
 import { useParams } from 'react-router';
+import { useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Button, Row, Col } from 'react-bootstrap';
 import { FavoriteIcon } from '../favorite-icon/favorite-icon';
 import { MovieCard } from '../movie-card/movie-card';
 
 // MovieView receives property from the MainView - movies
-export const MovieView = ({ movies, user, updateUserOnFav }) => {
+export const MovieView = ({ user, updateUserOnFav }) => {
+  const movies = useSelector((state) => state.movies.movies);
+
   console.log('MovieView prop', updateUserOnFav);
   const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
@@ -92,22 +94,22 @@ export const MovieView = ({ movies, user, updateUserOnFav }) => {
 };
 
 // I need to rewrite for array. Now MovieView receives array of movies
-MovieView.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      director: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        bio: PropTypes.string.isRequired,
-        birth: PropTypes.string.isRequired,
-        death: PropTypes.string,
-      }).isRequired,
-      genre: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-      }).isRequired,
-      image: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
+// MovieView.propTypes = {
+//   movies: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       title: PropTypes.string.isRequired,
+//       image: PropTypes.string.isRequired,
+//       director: PropTypes.shape({
+//         name: PropTypes.string.isRequired,
+//         bio: PropTypes.string.isRequired,
+//         birth: PropTypes.string.isRequired,
+//         death: PropTypes.string,
+//       }).isRequired,
+//       genre: PropTypes.shape({
+//         name: PropTypes.string.isRequired,
+//         description: PropTypes.string.isRequired,
+//       }).isRequired,
+//       image: PropTypes.string.isRequired,
+//     })
+//   ).isRequired,
+// };

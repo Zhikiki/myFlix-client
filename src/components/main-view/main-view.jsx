@@ -1,5 +1,8 @@
 // Importing useState for creation and initialization of state
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setMovies } from '../../redux/reducers/movies';
 
 // Importing MovieCard component, so it can be used here
 import { MovieCard } from '../movie-card/movie-card';
@@ -22,10 +25,15 @@ import { ProfileView } from '../pofile-view/profile-view';
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
-  const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  const movies = useSelector((state) => state.movies.movies);
+  // const [movies, setMovies] = useState([]);
+  // const [selectedMovie, setSelectedMovie] = useState(null);
+
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!token) {
@@ -58,13 +66,12 @@ export const MainView = () => {
             image: doc.ImagePath,
           };
         });
-        setMovies(moviesFromApi);
+        dispatch(setMovies(moviesFromApi));
       })
       .catch((error) => {
         console.log(error);
       });
   }, [token]);
-
 
   return (
     <BrowserRouter>
@@ -125,7 +132,6 @@ export const MainView = () => {
                   ) : (
                     <Col>
                       <MovieView
-                        movies={movies}
                         user={user}
                         updateUserOnFav={(user) => {
                           console.log('Update User called', user);

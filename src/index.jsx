@@ -1,5 +1,8 @@
 import { createRoot } from 'react-dom/client';
 
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
+
 // Importing MainView
 import { MainView } from './components/main-view/main-view';
 
@@ -12,11 +15,10 @@ import './index.scss';
 // Main component (will eventually use all the others)
 const MyFlixApplication = () => {
   return (
-
+    <Provider store={store}>
       <MainView />
-
+    </Provider>
   );
-  // <MainView />;
 };
 
 // Finds the root of your app

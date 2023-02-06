@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FavoriteIcon } from '../favorite-icon/favorite-icon';
 
-import { useSelector } from 'react-redux';
-
 import { Button, Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 

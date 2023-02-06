@@ -1,5 +1,5 @@
 // Importing useState for creation and initialization of state
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setMovies } from '../../redux/reducers/movies';
@@ -18,7 +18,6 @@ import { NavigationBar } from '../navigation-bar/navigation-bar';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
@@ -26,19 +25,13 @@ import { ProfileView } from '../pofile-view/profile-view';
 import { MoviesList } from '../movies-list/movies-list';
 
 export const MainView = () => {
-  // const storedUser = JSON.parse(localStorage.getItem('user'));
-  // const storedToken = localStorage.getItem('token');
 
   const movies = useSelector((state) => state.movies.movies);
-  // const [movies, setMovies] = useState([]);
-  // const [selectedMovie, setSelectedMovie] = useState(null);
 
   const user = useSelector((state) => state.user.user);
   const token = useSelector(
     (state) => state.token.token || localStorage.getItem('token')
   );
-  console.log(user);
-  console.log(token);
 
   // const [user, setUser] = useState(storedUser ? storedUser : null);
   // const [token, setToken] = useState(storedToken ? storedToken : null);
@@ -64,7 +57,6 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((user) => {
-        console.log('User from api', user);
         dispatch(setUser(user));
       });
   };
@@ -142,18 +134,9 @@ export const MainView = () => {
                 <>
                   {!user ? (
                     <Navigate to='/login' replace />
-                  ) : movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
                   ) : (
                     <Col>
-                      <MovieView
-                        user={user}
-                        // updateUserOnFav={(user) => {
-                        //   console.log('Update User called', user);
-                        //   setUser(user);
-                        //   localStorage.setItem('user', JSON.stringify(user));
-                        // }}
-                      />
+                      <MovieView />
                     </Col>
                   )}
                 </>

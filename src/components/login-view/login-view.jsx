@@ -9,7 +9,6 @@ import {
   Row,
 } from 'react-bootstrap';
 import { EntranceGreating } from '../entrance-greating/entrance-greating';
-import CardHeader from 'react-bootstrap/esm/CardHeader';
 
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/reducers/user';
@@ -39,11 +38,9 @@ export const LoginView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Login response: ', data);
         if (data.user) {
           localStorage.setItem('user', JSON.stringify(data.user));
           localStorage.setItem('token', data.token);
-          // onLoggedIn(data.user, data.token);
           dispatch(setUser(data.user));
           dispatch(setToken(data.token));
         } else {

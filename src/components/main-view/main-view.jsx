@@ -161,7 +161,7 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col>
-                      <ProfileView movies={movies} />
+                      <ProfileView />
                     </Col>
                   )}
                 </>

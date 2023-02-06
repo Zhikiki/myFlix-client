@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Button, Form, Row, Col, CardGroup, Card } from 'react-bootstrap';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/reducers/user';
 
-export const UpdateView = ({ storedToken, storedUser }) => {
-  const [token, setToken] = useState(storedToken ? storedToken : null);
-  const [user, setUser] = useState(storedUser ? storedUser : null);
+export const UpdateView = () => {
+  const token = localStorage.getItem('token');
+  const user = useSelector((state) => state.user.user);
+
+  const dispatch = useDispatch();
 
   const [username, setUsername] = useState(user.Username);
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState('');
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
 
@@ -18,8 +23,9 @@ export const UpdateView = ({ storedToken, storedUser }) => {
       .then((response) => response.json())
       .then((updatedUser) => {
         if (updatedUser) {
-          setUser(updatedUser);
+          dispatch(setUser(updatedUser));
           localStorage.setItem('user', JSON.stringify(updatedUser));
+          console.log(user);
           window.location.reload();
         }
       })
@@ -37,17 +43,14 @@ export const UpdateView = ({ storedToken, storedUser }) => {
       Birthday: birthday,
     };
 
-    fetch(
-      `https://movie-api-zhikiki.herokuapp.com/users/${storedUser.Username}`,
-      {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`https://movie-api-zhikiki.herokuapp.com/users/${user.Username}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
       .then((response) => {
         if (response.ok) {
           alert('Changes saved');

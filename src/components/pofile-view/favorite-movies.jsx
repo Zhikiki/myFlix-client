@@ -13,6 +13,14 @@ export const FavoriteMovies = () => {
     user.FavoriteMovies.includes(m.id)
   );
 
+  const filter = useSelector((state) => state.movies.filter)
+    .trim()
+    .toLowerCase();
+
+  const filteredMovies = favoriteMoviesList.filter((movie) =>
+    movie.title.toLowerCase().includes(filter)
+  );
+
   return (
     <Row>
       {favoriteMoviesList.length === 0 ? (
@@ -20,11 +28,10 @@ export const FavoriteMovies = () => {
       ) : (
         <>
           <div className='text-start h2 mb-4'>List of favorite movies</div>
-          {favoriteMoviesList.map((movie) => (
+
+          {filteredMovies.map((movie) => (
             <Col className='mb-5' key={movie.id} xs={12} sm={6} md={4} lg={3}>
-              <MovieCard
-                movieData={movie}
-              />
+              <MovieCard movieData={movie} />
             </Col>
           ))}
         </>

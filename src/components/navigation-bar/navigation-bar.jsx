@@ -8,7 +8,6 @@ import Col from 'react-bootstrap/Col';
 
 export const NavigationBar = () => {
   const user = useSelector((state) => state.user.user);
-  const token = useSelector((state) => state.token.token);
   const dispatch = useDispatch();
 
   const onLoggedOut = () => {

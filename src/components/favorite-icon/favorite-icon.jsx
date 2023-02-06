@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/reducers/user';
 
-// to get right color of Icon we need to refresh the page
-export const FavoriteIcon = ({ movie, updateUserOnFav }) => {
+export const FavoriteIcon = ({ movie }) => {
   const user = useSelector((state) => state.user.user);
-  const token = useSelector((state) => state.token.token);
+  const token = localStorage.getItem('token');
+
   const dispatch = useDispatch();
 
   const alreadyFavorite = user.FavoriteMovies.find(
@@ -28,7 +28,6 @@ export const FavoriteIcon = ({ movie, updateUserOnFav }) => {
     };
 
     let resultAlert = '';
-    let iconChange;
 
     if (alreadyFavorite) {
       requestOptions.method = 'DELETE';
@@ -45,11 +44,9 @@ export const FavoriteIcon = ({ movie, updateUserOnFav }) => {
     fetch(url, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
         alert(`${resultAlert}`);
-        // console.log(updateUserOnFav);
+
         dispatch(setUser(data));
-        document.querySelector('svg').classList.add('favorite-movie');
       })
       .catch((e) => {
         alert('Something went wrong');

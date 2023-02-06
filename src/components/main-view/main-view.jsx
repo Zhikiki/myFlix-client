@@ -23,6 +23,7 @@ import Button from 'react-bootstrap/Button';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { ProfileView } from '../pofile-view/profile-view';
+import { MoviesList } from '../movies-list/movies-list';
 
 export const MainView = () => {
   // const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -162,55 +163,7 @@ export const MainView = () => {
             <Route
               path='/'
               element={
-                <>
-                  {!user ? (
-                    <Navigate to='/login' replace />
-                  ) : movies.length === 0 ? (
-                    <div>The list is empty!</div>
-                  ) : (
-                    <>
-                      {movies.map((movie) => (
-                        <Col
-                          className='mb-5'
-                          key={movie.id}
-                          xs={12}
-                          sm={6}
-                          md={4}
-                          lg={3}
-                        >
-                          <MovieCard
-                            movieData={movie}
-                            user={user}
-                            updateUserOnFav={(user) => {
-                              console.log('Update User called', user);
-                              setUser(user);
-                              localStorage.setItem(
-                                'user',
-                                JSON.stringify(user)
-                              );
-                            }}
-                          />
-                        </Col>
-                      ))}
-                      <Row>
-                        <Col className='text-end mt-2'>
-                          <Button
-                            onClick={() => {
-                              setUser(null);
-                              setToken(null);
-                              localStorage.clear();
-                            }}
-                            variant='primary'
-                            size='lg'
-                            className='mb-5'
-                          >
-                            Sign out
-                          </Button>
-                        </Col>
-                      </Row>
-                    </>
-                  )}
-                </>
+                <>{!user ? <Navigate to='/login' replace /> : <MoviesList />}</>
               }
             />
 

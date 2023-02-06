@@ -35,7 +35,8 @@ export const MainView = () => {
 
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.token.token);
-
+console.log(user);
+console.log(token);
 
   // const [user, setUser] = useState(storedUser ? storedUser : null);
   // const [token, setToken] = useState(storedToken ? storedToken : null);
@@ -85,12 +86,12 @@ export const MainView = () => {
   return (
     <BrowserRouter>
       <NavigationBar
-        user={user}
-        onLoggedOut={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
+        
+        // onLoggedOut={() => {
+        //   setUser(null);
+        //   setToken(null);
+        //   localStorage.clear();
+        // }}
       />
       <Container>
         <Row className='justify-content-md-center'>

@@ -1,7 +1,19 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '../../redux/reducers/user';
+import { setToken } from '../../redux/reducers/token';
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = () => {
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.token.token);
+  const dispatch = useDispatch();
+
+  const onLoggedOut = () => {
+    dispatch(setUser(null));
+    dispatch(setToken(null));
+    localStorage.clear();
+  };
 
   return (
     <Navbar

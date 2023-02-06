@@ -11,7 +11,13 @@ import {
 import { EntranceGreating } from '../entrance-greating/entrance-greating';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/reducers/user';
+import { setToken } from '../../redux/reducers/token';
+
 export const LoginView = ({ onLoggedIn }) => {
+  dispatch = useDispatch();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,7 +43,9 @@ export const LoginView = ({ onLoggedIn }) => {
         if (data.user) {
           localStorage.setItem('user', JSON.stringify(data.user));
           localStorage.setItem('token', data.token);
-          onLoggedIn(data.user, data.token);
+          // onLoggedIn(data.user, data.token);
+          dispatch(setUser(data.user));
+          dispatch(setToken(data.token));
         } else {
           alert('No such user');
         }

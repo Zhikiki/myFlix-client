@@ -24,9 +24,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { ProfileView } from '../pofile-view/profile-view';
 
+
 export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem('user'));
-  const storedToken = localStorage.getItem('token');
+  // const storedUser = JSON.parse(localStorage.getItem('user'));
+  // const storedToken = localStorage.getItem('token');
 
   const movies = useSelector((state) => state.movies.movies);
   // const [movies, setMovies] = useState([]);
@@ -34,8 +35,7 @@ export const MainView = () => {
 
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.token.token);
-  console.log(user);
-  console.log(token);
+
 
   // const [user, setUser] = useState(storedUser ? storedUser : null);
   // const [token, setToken] = useState(storedToken ? storedToken : null);
@@ -49,6 +49,8 @@ export const MainView = () => {
 
     // Todo: Pull the user object from (GET /users/userid) from API
     // and update the state
+
+    // Need to make user logged in when page is bein reload
 
     fetch('https://movie-api-zhikiki.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` },
@@ -117,10 +119,10 @@ export const MainView = () => {
                   ) : (
                     <Col md={5}>
                       <LoginView
-                        onLoggedIn={(user, token) => {
-                          setUser(user);
-                          setToken(token);
-                        }}
+                      // onLoggedIn={(user, token) => {
+                      //   setUser(user);
+                      //   setToken(token);
+                      // }}
                       />
                     </Col>
                   )}

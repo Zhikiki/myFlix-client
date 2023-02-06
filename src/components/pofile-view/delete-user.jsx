@@ -1,6 +1,9 @@
 import { Button, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
-export const DeleteUser = ({ storedToken, storedUser }) => {
+export const DeleteUser = () => {
+  const user = useSelector((state) => state.user.user);
+  const token = localStorage.getItem('token');
   const handleDeregister = () => {
     const userWarning = confirm(
       `You are going to delete your account. All information will be lost and cannot be recovered. Are you sure?`
@@ -9,11 +12,11 @@ export const DeleteUser = ({ storedToken, storedUser }) => {
     userWarning === false
       ? alert('Great decision. Keep choosing your favorite movies')
       : fetch(
-          `https://movie-api-zhikiki.herokuapp.com/users/${storedUser.Username}`,
+          `https://movie-api-zhikiki.herokuapp.com/users/${user.Username}`,
           {
             method: 'DELETE',
             headers: {
-              Authorization: `Bearer ${storedToken}`,
+              Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',
             },
           }
@@ -31,14 +34,14 @@ export const DeleteUser = ({ storedToken, storedUser }) => {
   };
 
   return (
-    <Col md={5} className='text-end px-4'>
+    <Col className='text-end'>
       <div>
         <Button
-          onClick={() => handleDeregister(storedUser._id)}
+          onClick={() => handleDeregister(user._id)}
           className='button-delete'
           variant='danger'
         >
-          Delete Account
+          Press here to delete your account
         </Button>
       </div>
     </Col>

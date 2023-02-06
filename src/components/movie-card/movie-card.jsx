@@ -5,7 +5,7 @@ import { FavoriteIcon } from '../favorite-icon/favorite-icon';
 import { Button, Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export const MovieCard = ({ movieData, user, updateUserOnFav }) => {
+export const MovieCard = ({ movieData }) => {
   return (
     <Card className='h-100'>
       <Row className='h-50'>
@@ -23,11 +23,7 @@ export const MovieCard = ({ movieData, user, updateUserOnFav }) => {
         <Card.Text className='mt-3'>{movieData.description}</Card.Text>
         <Row className='d-flex flex-row justify-content-between align-items-baseline mt-auto'>
           <Col className='text-start'>
-            <FavoriteIcon
-              user={user}
-              movie={movieData}
-              updateUserOnFav={updateUserOnFav}
-            />
+            <FavoriteIcon movie={movieData} />
           </Col>
           <Col className='text-end'>
             <Link to={`/movies/${encodeURIComponent(movieData.id)}`}>

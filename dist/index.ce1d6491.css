@@ -12030,4 +12030,12 @@ h1, .h1 {
   color: #dc143c !important;
 }
 
+.button-delete {
+  color: #494848;
+  background-color: #fff;
+  border: none;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
 /*# sourceMappingURL=index.ce1d6491.css.map */

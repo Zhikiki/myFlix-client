@@ -1,9 +1,12 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
-export const UserInfo = ({ user }) => {
-  let userBirthday = moment.utc(user.Birthday).format('MM/DD/YYYY');
+export const UserInfo = () => {
+  const user = useSelector((state) => state.user.user);
+  let userBirthday = moment(user.Birthday).format('DD-MM-YYYY');
 
   return (
     <Row className='d-flex flex-column flex-lg-row ms-2 text-lg-center mt-lg-3 mt-3'>

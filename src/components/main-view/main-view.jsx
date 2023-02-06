@@ -6,9 +6,6 @@ import { setMovies } from '../../redux/reducers/movies';
 import { setUser } from '../../redux/reducers/user';
 import { setToken } from '../../redux/reducers/token';
 
-// Importing MovieCard component, so it can be used here
-import { MovieCard } from '../movie-card/movie-card';
-
 // Importing MovieView component
 import { MovieView } from '../movie-view/movie-view';
 
@@ -32,9 +29,6 @@ export const MainView = () => {
   const token = useSelector(
     (state) => state.token.token || localStorage.getItem('token')
   );
-
-  // const [user, setUser] = useState(storedUser ? storedUser : null);
-  // const [token, setToken] = useState(storedToken ? storedToken : null);
 
   const dispatch = useDispatch();
 

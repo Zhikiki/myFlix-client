@@ -16,9 +16,9 @@ export const MoviesList = () => {
   );
   return (
     <>
-      <Row>
+      {/* <Row>
         <MoviesFilter />
-      </Row>
+      </Row> */}
       <Row>
         {movies.length === 0 ? (
           <Col>The list is empty</Col>

@@ -41,7 +41,7 @@ export const DeleteUser = () => {
           className='button-delete'
           variant='danger'
         >
-          Press here delete your account
+          Press here to delete your account
         </Button>
       </div>
     </Col>

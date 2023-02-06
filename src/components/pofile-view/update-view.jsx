@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Row, Col, CardGroup, Card } from 'react-bootstrap';
+import moment from 'moment';
 
 export const UpdateView = ({ storedToken, storedUser }) => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
@@ -61,7 +62,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
   };
 
   return (
-    <Row className="mt-2">
+    <Row className='mt-2'>
       <Col md={5}>
         <CardGroup>
           <Card className='border-0'>
@@ -72,7 +73,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
                     type='text'
-                    // value={username}
+                    value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                     minLength='3'
@@ -88,7 +89,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
                     type='password'
-                    // value={password}
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
@@ -100,7 +101,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Email:</Form.Label>
                   <Form.Control
                     type='email'
-                    // value={email}
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder='Enter email'
@@ -110,7 +111,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Birthday:</Form.Label>
                   <Form.Control
                     type='date'
-                    // value={birthday}
+                    value={moment(birthday).format('YYYY-MM-DD')}
                     onChange={(e) => setBirthday(e.target.value)}
                   />
                 </Form.Group>

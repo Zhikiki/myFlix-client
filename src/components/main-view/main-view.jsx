@@ -24,7 +24,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { ProfileView } from '../pofile-view/profile-view';
 
-
 export const MainView = () => {
   // const storedUser = JSON.parse(localStorage.getItem('user'));
   // const storedToken = localStorage.getItem('token');
@@ -34,9 +33,11 @@ export const MainView = () => {
   // const [selectedMovie, setSelectedMovie] = useState(null);
 
   const user = useSelector((state) => state.user.user);
-  const token = useSelector((state) => state.token.token);
-console.log(user);
-console.log(token);
+  const token = useSelector(
+    (state) => state.token.token || localStorage.getItem('token')
+  );
+  console.log(user);
+  console.log(token);
 
   // const [user, setUser] = useState(storedUser ? storedUser : null);
   // const [token, setToken] = useState(storedToken ? storedToken : null);
@@ -48,11 +49,26 @@ console.log(token);
       return;
     }
 
-    // Todo: Pull the user object from (GET /users/userid) from API
-    // and update the state
+    //Get User on every reload
+    getUser();
 
-    // Need to make user logged in when page is bein reload
+    // Get movies
+    getMovies();
+  }, [token]);
 
+  const getUser = () => {
+    const username = JSON.parse(localStorage.getItem('user')).Username;
+    fetch(`https://movie-api-zhikiki.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
+      .then((user) => {
+        console.log('User from api', user);
+        dispatch(setUser(user));
+      });
+  };
+
+  const getMovies = () => {
     fetch('https://movie-api-zhikiki.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -81,18 +97,11 @@ console.log(token);
       .catch((error) => {
         console.log(error);
       });
-  }, [token]);
+  };
 
   return (
     <BrowserRouter>
-      <NavigationBar
-        
-        // onLoggedOut={() => {
-        //   setUser(null);
-        //   setToken(null);
-        //   localStorage.clear();
-        // }}
-      />
+      <NavigationBar />
       <Container>
         <Row className='justify-content-md-center'>
           <Routes>
@@ -119,12 +128,7 @@ console.log(token);
                     <Navigate to='/' />
                   ) : (
                     <Col md={5}>
-                      <LoginView
-                      // onLoggedIn={(user, token) => {
-                      //   setUser(user);
-                      //   setToken(token);
-                      // }}
-                      />
+                      <LoginView />
                     </Col>
                   )}
                 </>

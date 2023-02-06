@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/reducers/user';
 import { setToken } from '../../redux/reducers/token';
 
-export const LoginView = ({ onLoggedIn }) => {
+export const LoginView = () => {
   dispatch = useDispatch();
 
   const [username, setUsername] = useState('');

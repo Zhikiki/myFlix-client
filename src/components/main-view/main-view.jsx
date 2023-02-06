@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setMovies } from '../../redux/reducers/movies';
+import { setUser } from '../../redux/reducers/user';
+import { setToken } from '../../redux/reducers/token';
 
 // Importing MovieCard component, so it can be used here
 import { MovieCard } from '../movie-card/movie-card';
@@ -30,8 +32,13 @@ export const MainView = () => {
   // const [movies, setMovies] = useState([]);
   // const [selectedMovie, setSelectedMovie] = useState(null);
 
-  const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.token.token);
+  console.log(user);
+  console.log(token);
+
+  // const [user, setUser] = useState(storedUser ? storedUser : null);
+  // const [token, setToken] = useState(storedToken ? storedToken : null);
 
   const dispatch = useDispatch();
 
